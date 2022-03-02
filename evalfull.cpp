@@ -26,19 +26,17 @@ bool balanced(char *expression[], int numTokens) {
                       // all of the same operations as the stack from
                       // Step 2 of this lab, but it won't get full
                       // and it can store any type - <char *> here
+    char paren = '(';
     for (int i = 0; i<numTokens; i++){
         TokenType element = identify(expression[i]);
         if (element == OTHER){
-            cout<<expression[i]<<" first false"<<endl;
             return false;
-            
         }
         if (element == LEFT){
-            s.push("(");
+            s.push(&paren);
         }
         else if (element == RIGHT){
             if (i == 0){
-                cout<< "second false"<<endl;
                 return false;
             }
             s.pop();
@@ -47,7 +45,6 @@ bool balanced(char *expression[], int numTokens) {
     if (s.empty()){
         return true;
     }
-    cout<<"third false"<<endl;
     return false; // REPLACE THIS return WITH ACTUAL IMPLEMENTATION
 }
 
